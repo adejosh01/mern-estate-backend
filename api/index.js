@@ -5,9 +5,12 @@ import userRouter from './routes/user.route.js';
 import authRouter from './routes/auth.route.js';
 import listingRouter from './routes/listing.route.js';
 import cookieParser from 'cookie-parser';
+import cors from 'cors'
 import path from 'path';
 
 dotenv.config()
+
+const __dirname = path.resolve();
 
 mongoose.connect(process.env.MONGO).then(() => {
     console.log('Connected to MongoDb')
@@ -16,7 +19,10 @@ mongoose.connect(process.env.MONGO).then(() => {
 })
 const app = express();
 
+
+
 app.use(express.json());
+app.use(cors());
 
 app.use(cookieParser());
 
